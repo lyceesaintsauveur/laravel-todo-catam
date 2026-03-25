@@ -1,66 +1,114 @@
-<<<<<<< HEAD
-# laravel-todo
-projet de todo Liste : apprentissage framework laravel
-=======
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📝 Application Todo - Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📌 Présentation
 
-## About Laravel
+Ce projet est une application web de gestion de tâches (Todo List) développée avec le framework **Laravel**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Elle permet à un utilisateur authentifié de :
+- créer, modifier et supprimer des tâches
+- organiser ses tâches par **listes**
+- associer des **catégories**
+- rechercher des tâches
+- gérer son compte utilisateur
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🎯 Objectifs pédagogiques
 
-## Learning Laravel
+Ce projet s’inscrit dans un contexte de formation **BTS SIO** et vise à mettre en œuvre :
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- le framework Laravel (MVC)
+- la gestion de base de données avec Eloquent ORM
+- l’authentification (Laravel Breeze)
+- la sécurisation des accès
+- les tests automatisés
+- l’intégration continue (CI)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Technologies utilisées
 
-## Laravel Sponsors
+- PHP 8.x
+- Laravel 12
+- MySQL
+- Vite
+- Bootstrap (SCSS)
+- Laravel Breeze (authentification)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## ⚙️ Installation
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 1. Cloner le projet
 
-## Contributing
+```bash
+git clone https://github.com/UTILISATEUR/NOM_DU_REPO.git
+cd NOM_DU_REPO
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. Installer les dépendances
+```bash
+composer install
+npm install
+4. Configuration
+cp .env.example .env
+php artisan key:generate
+```
+Configurer la base de données dans le fichier .env
 
-## Code of Conduct
+4. Migration et données
+```bash
+php artisan migrate --seed
+6. Lancer le projet
+php artisan serve
+npm run dev
+```
+Accès : http://localhost:8000
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+🔐 Authentification
 
-## Security Vulnerabilities
+L’application utilise Laravel Breeze.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Fonctionnalités : inscription, connexion, déconnexion, réinitialisation de mot de passe
 
-## License
+## 🗄️ Modélisation
+- Relations principales :
+- Un utilisateur possède plusieurs tâches
+- Une tâche appartient à une liste
+- Une tâche peut avoir plusieurs catégories (relation many-to-many)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
->>>>>>> 955428f (commit initial LaravelTodo)
+## 🔍 Fonctionnalités principales
+
+- CRUD des tâches
+- gestion des listes
+- gestion des catégories
+- recherche de tâches
+- interface sécurisée
+- validation des formulaires
+
+## 🧪 Tests
+
+Lancer les tests : ```php artisan test``` -->  Couverture minimale attendue : 80%
+
+## 🔒 Sécurité
+
++ protection CSRF
++ validation des entrées utilisateurs
++ middleware d’authentification
++ limitation des tentatives de connexion (throttle)
+
+## 🚀 Intégration continue
+
+Le projet utilise GitHub Actions pour exécuter les tests, vérifier la qualité du code
+
+## 📂 Structure du projet
+
+app/
+database/
+resources/
+routes/
+tests/
+
+## 👩‍💻 Auteur 
+Projet réalisé dans le cadre du BTS SIO, sous 📄 Licence MIT sur une idée originale de valentin Brosseau
+Projet pédagogique – usage académique uniquement.
