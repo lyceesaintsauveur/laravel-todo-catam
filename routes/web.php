@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     // Action correspondant au form de la vue (donc POST) et appel de la fonction saveTodo du controller
     // Route concernant les todos
-    // Route::get('/', [TodosController::class, 'liste'])->name('todo.liste'); //feat/scopeByStatus
-    // feature : #issue#2 : filtre de la liste des todos (toutes, en cours, terminées)
 
+    // feature : #issue#2 : filtre de la liste des todos (toutes, en cours, terminées)
+    // Route::get('/', [TodosController::class, 'liste'])->name('todo.liste');
     Route::get('/{filtre?}', [TodosController::class, 'liste'])
         ->name('todo.liste')
         ->where('filtre', 'toutes|en_cours|terminees');

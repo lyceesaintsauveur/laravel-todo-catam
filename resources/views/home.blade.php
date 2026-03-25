@@ -49,28 +49,28 @@
                 </div>
                 
             </form>
-
+            <!-- Issue#2 : Barre de filtres -->
+            {{-- Barre de filtres --}}
+            <div class="btn-group mb-3" role="group">
+                <a href="{{ route('todo.liste', 'toutes') }}"
+                class="btn {{ $filtre === 'toutes' ? 'btn-primary' : 'btn-outline-primary' }}">
+                    Toutes
+                </a>
+                <a href="{{ route('todo.liste', 'en_cours') }}"
+                class="btn {{ $filtre === 'en_cours' ? 'btn-warning' : 'btn-outline-warning' }}">
+                    En cours
+                </a>
+                <a href="{{ route('todo.liste', 'terminees') }}"
+                class="btn {{ $filtre === 'terminees' ? 'btn-success' : 'btn-outline-success' }}">
+                    Terminées
+                </a>
+            </div>
             <!-- Liste des TODOS-->
             <ul class="list-group">
                 @if (session('validation'))
                     <p class="alert alert-success">{{ session('validation') }}</p>
                 @endif
-                <!-- Issue#2 : Barre de filtres -->
-                {{-- Barre de filtres --}}
-                <div class="btn-group mb-3" role="group">
-                    <a href="{{ route('todo.liste', 'toutes') }}"
-                    class="btn {{ $filtre === 'toutes' ? 'btn-primary' : 'btn-outline-primary' }}">
-                        Toutes
-                    </a>
-                    <a href="{{ route('todo.liste', 'en_cours') }}"
-                    class="btn {{ $filtre === 'en_cours' ? 'btn-warning' : 'btn-outline-warning' }}">
-                        En cours
-                    </a>
-                    <a href="{{ route('todo.liste', 'terminees') }}"
-                    class="btn {{ $filtre === 'terminees' ? 'btn-success' : 'btn-outline-success' }}">
-                        Terminées
-                    </a>
-                </div>
+                
                 <!-- Affichage de chaque todo -->
                 @forelse ($todos as $todo)
                     <li class="list-group-item">
