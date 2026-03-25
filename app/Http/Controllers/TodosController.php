@@ -10,13 +10,23 @@ use Illuminate\Http\Request;
 class TodosController extends Controller
 {
     // Liste
-    public function liste()
+    public function liste($filtre = 'toutes')
     {
         // Chargement des todos pour l'utilisateur connecté
-        $todos = Todos::all()->where('user_id', auth()->user()->id);
+        $query = Todos::where('user_id', auth()->user()->id);
+
+        // Application du filtre sur les todos
+        if ($filtre === 'en_cours') {
+            $query->where('termine', 0);
+        } elseif ($filtre === 'terminees') {
+            $query->where('termine', 1);
+        }
+        // default : pas de filtre supplémentaire
+
         // Chargement des listes pour les todos pour éventuellement affecter une liste à un todo
         // affichage uniquement si le todo n'appartient pas déjà à une liste
         // if($todos->listes_id == NULL){
+        $todos = $query->get();
         $todos->load('listes');
         // }
         // Chargement des catégories pour les boites à cocher
@@ -24,7 +34,7 @@ class TodosController extends Controller
         // Chargement des listes pour la liste déroulante
         $listes = Listes::all();
 
-        return view('home', compact('todos', 'categories', 'listes'));
+        return view('home', compact('todos', 'categories', 'listes', 'filtre'));
     }
 
     public function saveTodo(Request $request)
