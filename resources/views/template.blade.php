@@ -9,8 +9,6 @@
         <!-- Styles et Scripts : Utilisation SASS --> 
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         
-
-        
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
