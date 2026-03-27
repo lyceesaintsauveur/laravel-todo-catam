@@ -34,7 +34,7 @@ jobs:
         with:
           args: >
             -Dsonar.organization=sofaugeras 
-            -Dsonar.projectKey=laravel-todo
+            -Dsonar.projectKey=sofaugeras_laravel-todo
             -Dsonar.sources=app,routes,database
             -Dsonar.exclusions=vendor/**,node_modules/**
             -Dsonar.php.coverage.reportPaths=coverage.xml
