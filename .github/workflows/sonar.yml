@@ -33,8 +33,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.organization=VOTRE_ORGANISATION
-            -Dsonar.projectKey=laravel-prenom
+            -Dsonar.organization=sofaugeras 
+            -Dsonar.projectKey=laravel-todo
             -Dsonar.sources=app,routes,database
             -Dsonar.exclusions=vendor/**,node_modules/**
             -Dsonar.php.coverage.reportPaths=coverage.xml
