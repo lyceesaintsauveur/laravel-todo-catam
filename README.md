@@ -11,8 +11,6 @@ Elle permet à un utilisateur authentifié de :
 - rechercher des tâches
 - gérer son compte utilisateur
 
----
-
 ## 🎯 Objectifs pédagogiques
 
 Ce projet s’inscrit dans un contexte de formation **BTS SIO** et vise à mettre en œuvre :
@@ -24,8 +22,6 @@ Ce projet s’inscrit dans un contexte de formation **BTS SIO** et vise à mettr
 - les tests automatisés
 - l’intégration continue (CI)
 
----
-
 ## 🛠️ Technologies utilisées
 
 - PHP 8.x
@@ -35,7 +31,7 @@ Ce projet s’inscrit dans un contexte de formation **BTS SIO** et vise à mettr
 - Bootstrap (SCSS)
 - Laravel Breeze (authentification)
 
----
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sofaugeras_laravel-todo&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sofaugeras_laravel-todo)
 
 ## ⚙️ Installation
 
