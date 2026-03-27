@@ -1,0 +1,47 @@
+name: SonarCloud Analysis
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  sonarcloud:
+    name: Analyse SonarCloud
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, pdo_sqlite
+          coverage: xdebug
+
+      - name: Installation des dépendances
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Configuration de l'environnement
+        run: cp .env.example .env && php artisan key:generate
+
+      - name: Exécution des tests avec couverture
+        run: php artisan test --coverage-clover=coverage.xml
+
+      - name: Analyse SonarCloud
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.organization=VOTRE_ORGANISATION
+            -Dsonar.projectKey=laravel-prenom
+            -Dsonar.sources=app,routes,database
+            -Dsonar.exclusions=vendor/**,node_modules/**
+            -Dsonar.php.coverage.reportPaths=coverage.xml
