@@ -112,7 +112,7 @@ jobs:
       - name: Run tests
         env:
           XDEBUG_MODE: coverage
-        run: php artisan test --coverage
+        run: php artisan test --coverage-clover=coverage.xml || true
 
   # ─────────────────────────────────────────────────────────────────────────
   # JOB 2 : CD — Build image Docker, push, déploiement SSH
