@@ -10,11 +10,8 @@ FROM php:8.3-cli-alpine AS builder
 
 LABEL stage=builder
 
-# Dépendances système nécessaires à Composer et extensions PHP
+# Dépendances runtime uniquement (pas de compilateurs)
 RUN apk add --no-cache \
-    git \
-    curl \
-    unzip \
     libpng-dev \
     libjpeg-turbo-dev \
     libwebp-dev \
@@ -25,7 +22,10 @@ RUN apk add --no-cache \
         mbstring \
         xml \
         gd \
-        fileinfo
+        fileinfo \
+        opcache \
+    && apk del libpng-dev libjpeg-turbo-dev libwebp-dev libxml2-dev oniguruma-dev \
+    && rm -rf /var/cache/apk/*
 
 # Installer Composer depuis l'image officielle
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
