@@ -63,20 +63,23 @@ RUN php artisan config:cache \
 # ─────────────────────────────────────────────────────────────────────────────
 FROM php:8.3-fpm-alpine AS runtime
 
-# Dépendances runtime uniquement (pas de compilateurs)
+FROM php:8.3-fpm-alpine AS runtime
+
 RUN apk add --no-cache \
-    libpng \
-    libjpeg-turbo \
-    libwebp \
-    libxml2 \
-    oniguruma \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    libwebp-dev \
+    libxml2-dev \
+    oniguruma-dev \
     && docker-php-ext-install \
         pdo_mysql \
         mbstring \
         xml \
         gd \
         fileinfo \
-        opcache
+        opcache \
+    && apk del libpng-dev libjpeg-turbo-dev libwebp-dev libxml2-dev oniguruma-dev \
+    && rm -rf /var/cache/apk/*
 
 # Configuration OPcache pour la production
 RUN { \
