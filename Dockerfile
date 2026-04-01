@@ -9,7 +9,7 @@
 FROM php:8.3-cli-alpine AS builder
 
 LABEL stage=builder
-
+# Mainteneur et métadonnées
 # Dépendances runtime uniquement (pas de compilateurs)
 RUN apk add --no-cache \
     libpng-dev \
