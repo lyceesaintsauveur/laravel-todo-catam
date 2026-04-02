@@ -24,12 +24,14 @@ RUN apk add --no-cache \
         intl
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
 RUN apk add --no-cache nodejs npm
 
 WORKDIR /app
 
-COPY composer.json composer.lock ./
+# Copier TOUT le code source d'abord
+COPY . .
+
+# Puis installer les dépendances (artisan est disponible)
 RUN composer install \
     --no-dev \
     --no-interaction \
@@ -37,11 +39,7 @@ RUN composer install \
     --optimize-autoloader \
     --prefer-dist
 
-COPY package.json package-lock.json ./
 RUN npm ci
-
-COPY . .
-
 RUN npm run build
 
 RUN php artisan config:cache \
