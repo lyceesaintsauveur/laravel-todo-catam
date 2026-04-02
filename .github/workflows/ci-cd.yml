@@ -144,12 +144,12 @@ jobs:
         with:
           context: .
           push: true
-          # Tags : latest + SHA court pour la traçabilité
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/todo-laravel:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/todo-laravel:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: BUILDKIT_PROGRESS=plain
 
       # ── Déploiement SSH sur srv-debian ────────────────────────────────────
       - name: Deploy via SSH to srv-debian

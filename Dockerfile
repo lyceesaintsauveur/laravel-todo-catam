@@ -14,12 +14,14 @@ RUN apk add --no-cache \
     libwebp-dev \
     libxml2-dev \
     oniguruma-dev \
+    icu-dev \
     && docker-php-ext-install \
         pdo_mysql \
         mbstring \
         xml \
         gd \
-        fileinfo
+        fileinfo \
+        intl
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
