@@ -150,11 +150,13 @@ jobs:
 
       - name: Deploy
         run: |
-          cd /opt/todo-laravel
-          sed -i "s|^IMAGE_TAG=.*|IMAGE_TAG=${{ github.sha }}|" .env.prod
-          cp .env.prod .env
+          cp /opt/todo-laravel/.env.prod .env
           docker compose pull app
           docker compose up -d --no-deps app
+          sleep 5
+          docker compose exec -T app php artisan config:cache
+          docker compose exec -T app php artisan route:cache
+          docker compose exec -T app php artisan view:cache
           docker compose exec -T app php artisan migrate --no-interaction --force
           docker compose exec -T app php artisan cache:clear
 
