@@ -152,7 +152,7 @@ jobs:
         run: |
           cp /opt/todo-laravel/.env.prod .env
           docker compose pull app
-          docker compose up -d --no-deps app
+          docker compose up -d --no-deps --force-recreate app
           sleep 5
           docker compose exec -T app php artisan config:cache
           docker compose exec -T app php artisan route:cache
