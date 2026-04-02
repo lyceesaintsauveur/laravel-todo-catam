@@ -151,8 +151,9 @@ jobs:
       - name: Deploy
         run: |
           cp /opt/todo-laravel/.env.prod .env
+          docker compose down --remove-orphans || true
           docker compose pull app
-          docker compose up -d --no-deps --force-recreate app
+          docker compose up -d --force-recreate
           sleep 5
           docker compose exec -T app php artisan config:cache
           docker compose exec -T app php artisan route:cache
