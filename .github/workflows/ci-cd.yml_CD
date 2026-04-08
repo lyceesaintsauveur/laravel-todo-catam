@@ -165,3 +165,10 @@ jobs:
         run: |
           echo "## Déploiement réussi ✅" >> $GITHUB_STEP_SUMMARY
           echo "- **Image** : \`${{ secrets.DOCKERHUB_USERNAME }}/todo-laravel:${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+
+          # Vérifier que l'application est accessible
+          # (optionnel) : faire une requête HTTP à l'URL de l'app et afficher le status
+          #if curl -s -o /dev/null -w "%{http_code}" http://todo.srv-debian.local | grep -q "200"; then
+          #  echo "- Application accessible à l'URL : http://todo.srv-debian.local" >> $GITHUB_STEP_SUM
+          # attention pas de seeders : docker compose exec -T app php artisan db:seed --force
+          
