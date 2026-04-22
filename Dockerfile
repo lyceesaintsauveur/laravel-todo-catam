@@ -14,14 +14,16 @@ RUN apk add --no-cache \
     libwebp-dev \
     libxml2-dev \
     oniguruma-dev \
-    icu-dev \
     && docker-php-ext-install \
         pdo_mysql \
         mbstring \
         xml \
         gd \
         fileinfo \
-        intl
+        opcache \
+    && apk del libpng-dev libjpeg-turbo-dev libwebp-dev libxml2-dev oniguruma-dev \
+    && apk add --no-cache libpng libjpeg-turbo libwebp \
+    && rm -rf /var/cache/apk/*
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 RUN apk add --no-cache nodejs npm
