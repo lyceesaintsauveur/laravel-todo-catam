@@ -150,7 +150,7 @@ jobs:
 
       - name: Deploy
         run: |
-          cp ${{ secrets.DEPLOY_PATH }}/.env.prod .env
+          cp ${{ secrets.DEPLOY_PATH }}/.env.prod ${{ secrets.DEPLOY_PATH }}/.env
           docker compose --project-directory ${{ secrets.DEPLOY_PATH }} down --remove-orphans || true
           docker compose --project-directory ${{ secrets.DEPLOY_PATH }} pull app
           docker compose --project-directory ${{ secrets.DEPLOY_PATH }} up -d --force-recreate
