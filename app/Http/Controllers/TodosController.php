@@ -6,6 +6,7 @@ use App\Models\Categories;
 use App\Models\Listes;
 use App\Models\Todos;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class TodosController extends Controller
 {
@@ -45,7 +46,7 @@ class TodosController extends Controller
             $request->validate([
                 'texte' => 'required|string|max:255',
             ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             // En cas d'erreur de validation, rediriger avec les messages d'erreur
             // return redirect()->route('todo.liste')
             //     ->withErrors($e->validator)

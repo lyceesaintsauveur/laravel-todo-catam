@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CategoriesController extends Controller
 {
     /**
      * Affiche la liste des catégories.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -23,7 +24,7 @@ class CategoriesController extends Controller
     /**
      * Affiche la liste des catégories.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function listeCatégories()
     {
@@ -33,7 +34,7 @@ class CategoriesController extends Controller
     /**
      * Affiche le formulaire de création d'une nouvelle catégorie.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -43,7 +44,7 @@ class CategoriesController extends Controller
     /**
      * Enregistre une nouvelle catégorie dans la base de données.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -64,7 +65,7 @@ class CategoriesController extends Controller
      * Affiche les détails d'une catégorie spécifique.
      *
      * @param  int  $idcat
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($idcat)
     {
