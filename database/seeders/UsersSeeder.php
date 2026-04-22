@@ -17,23 +17,26 @@ class UsersSeeder extends Seeder
     public function run()
     {
         // Exemple d'insertion d'un utilisateur
-        DB::table('users')->insert([
-            'name' => 'John Doe',
-            'email' => 'john.doe@example.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('mdp'), // Assurez-vous de hasher le mot de passe
-            'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        DB::table('users')->updateOrInsert(
+            ['email' => 'john.doe@example.com'],
+            [
+                'name' => 'John Doe',
+                'email_verified_at' => now(),
+                'password' => Hash::make('mdp'),
+                'remember_token' => Str::random(10),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
 
         // Ajoutez d'autres utilisateurs au besoin
-        DB::table('users')->insert([
-            'name' => 'Jane Smith',
-            'email' => 'jane.smith@example.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('password'),
-            'remember_token' => Str::random(10),
+        DB::table('users')->updateOrInsert(
+            ['email' => 'jane.smith@example.com'],
+            [
+                'name' => 'Jane Smith',
+                'email_verified_at' => now(),
+                'password' => Hash::make('password'),
+                'remember_token' => Str::random(10),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
