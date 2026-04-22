@@ -150,16 +150,16 @@ jobs:
 
       - name: Deploy
         run: |
-          cp /opt/todo-laravel/.env.prod .env
-          docker compose down --remove-orphans || true
-          docker compose pull app
-          docker compose up -d --force-recreate
+          cp ${{ secrets.DEPLOY_PATH }}/.env.prod .env
+          docker compose --project-directory ${{ secrets.DEPLOY_PATH }} down --remove-orphans || true
+          docker compose --project-directory ${{ secrets.DEPLOY_PATH }} pull app
+          docker compose --project-directory ${{ secrets.DEPLOY_PATH }} up -d --force-recreate
           sleep 5
-          docker compose exec -T app php artisan config:cache
-          docker compose exec -T app php artisan route:cache
-          docker compose exec -T app php artisan view:cache
-          docker compose exec -T app php artisan migrate --no-interaction --force
-          docker compose exec -T app php artisan cache:clear
+          docker compose --project-directory ${{ secrets.DEPLOY_PATH }} exec -T app php artisan config:cache
+          docker compose --project-directory ${{ secrets.DEPLOY_PATH }} exec -T app php artisan route:cache
+          docker compose --project-directory ${{ secrets.DEPLOY_PATH }} exec -T app php artisan view:cache
+          docker compose --project-directory ${{ secrets.DEPLOY_PATH }} exec -T app php artisan migrate --no-interaction --force
+          docker compose --project-directory ${{ secrets.DEPLOY_PATH }} exec -T app php artisan cache:clear
 
       - name: Deployment summary
         run: |
